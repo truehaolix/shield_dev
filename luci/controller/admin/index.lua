@@ -23,7 +23,7 @@ function index()
 
 	local page   = node("admin")
 	--page.target  = firstchild()
-	page.target  = template("admin_shield/shield")
+	page.target  = template("admin_web/shield_index")
 	page.title   = _("Administration")
 	page.order   = 10
 	page.sysauth = "root"

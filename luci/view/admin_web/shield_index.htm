@@ -28,9 +28,9 @@ a{ behavior:url(<%=resource%>/turbo/web/images/blur.htc);}
 <div id="header">
 	<div class="wrap">
 		<p class="top_menu">
-			</span><a href="<%=REQUEST_URI%>/admin_web/system/net_detect" id="system_netdetect" target="_blank">网络诊断</a>
+			</span><a href="<%=controller%>/admin_web/system/net_detect" id="system_netdetect" target="_blank">网络诊断</a>
 			<span class="pipe">|</span><a href="#" id="system_config">修改密码</a>
-			<span class="pipe">|</span><a href="<%=REQUEST_URI%>/logout">退出</a>
+			<span class="pipe">|</span><a href="<%=controller%>/logout">退出</a>
 		</p>
 		<h1><a href="#" id="logo">Shield</a></h1>
 	</div>
@@ -67,34 +67,34 @@ a{ behavior:url(<%=resource%>/turbo/web/images/blur.htc);}
 						art.dialog.list['func_box'].close();
 					}
 					if (act=="set_wifi"){
-						art.dialog.open('<%=REQUEST_URI%>/set_wifi', {id:"func_box", title: '无线设置',width:600, height:480, lock:true,drag: false});
+
+						art.dialog.open('<%=pcdata(luci.dispatcher.build_url("admin/shield/set_wifi"))%>', {id:"func_box", title: '无线设置',width:600, height:480, lock:true,drag: false});
 			        } else if (act=="set_network") {
-						art.dialog.open('<%=REQUEST_URI%>/network', {id:"func_box", title: '外网设置',width:640, height:550, lock:true,drag: false});
+						art.dialog.open('<%=pcdata(luci.dispatcher.build_url("admin/shield/network"))%>', {id:"func_box", title: '外网设置',width:640, height:550, lock:true,drag: false});
 			      	} else  if (act=="cloud") {
 						
 			       	} else  if (act=="application") {
 			        } else  if (act=="system_state") {
-			        	art.dialog.open('<%=REQUEST_URI%>/info', {id:"func_box", title: '系统状态',width:600, height:650, lock:true,drag: false});
+			        	art.dialog.open('<%=pcdata(luci.dispatcher.build_url("admin/shield/info"))%>', {id:"func_box", title: '系统状态',width:600, height:650, lock:true,drag: false});
 			       	} else  if (act=="advance_settings") {
-					    art.dialog.open('<%=REQUEST_URI%>/settings', {id:"func_box", title: '高级设置',width:780, height:590, lock:true,drag: false});
+					    art.dialog.open('<%=pcdata(luci.dispatcher.build_url("admin/shield/settings"))%>', {id:"func_box", title: '高级设置',width:780, height:590, lock:true,drag: false});
 				    } else  if (act=="system_config") {
-						art.dialog.open('<%=REQUEST_URI%>/modify_password', {id:"func_box", title: '修改密码',width:500, height:450, lock:true,drag: false});
+						art.dialog.open('<%=pcdata(luci.dispatcher.build_url("admin/shield/modify_password"))%>', {id:"func_box", title: '修改密码',width:500, height:450, lock:true,drag: false});
 				    } else  if (act=="device_list") {
-						art.dialog.open('<%=REQUEST_URI%>/devices_list', {id:"func_box", title: '连接设备列表',width:660, height:450, lock:true,drag: false});
+						art.dialog.open('<%=pcdata(luci.dispatcher.build_url("admin/shield/devices_list"))%>', {id:"func_box", title: '连接设备列表',width:660, height:450, lock:true,drag: false});
 				    }  else if (act=="traffic_info"){
-				        art.dialog.open('<%=REQUEST_URI%>/web_status', {id:"func_box", title: '实时流量',width:790, height:480, lock:true,drag: false});
+				        art.dialog.open('<%=pcdata(luci.dispatcher.build_url("admin/shield/web_status"))%>', {id:"func_box", title: '实时流量',width:790, height:480, lock:true,drag: false});
 				    } else if (act=="mac_filter") {
-					    art.dialog.open('<%=REQUEST_URI%>/settings', {id:"func_box", title: 'mac 地址访问限制',width:780, height:570, lock:true,drag: false});
+					    art.dialog.open('<%=pcdata(luci.dispatcher.build_url("admin/shield/settings"))%>', {id:"func_box", title: 'mac 地址访问限制',width:780, height:570, lock:true,drag: false});
 
 					} else if (act=="usbinfo") {
-					    art.dialog.open('<%=REQUEST_URI%>/usbinfo', {id:"func_box", title: 'USB 设置',width:780, height:570, lock:true,drag: false});
+					    art.dialog.open('<%=pcdata(luci.dispatcher.build_url("admin/shield/usbinfo"))%>', {id:"func_box", title: 'USB 设置',width:780, height:570, lock:true,drag: false});
 					} else if (act=="fileview") {
-					    art.dialog.open('<%=REQUEST_URI%>/fileview', {id:"func_box", title: 'USB 设置',width:780, height:570, lock:true,drag: false});
-					} else if (act=="system_config") {
-						art.dialog.open('<%=REQUEST_URI%>/modify_password', {id:"func_box", title: '修改密码',width:500, height:450, lock:true,drag: false})
+					    art.dialog.open('<%=pcdata(luci.dispatcher.build_url("admin/shield/fileview"))%>', {id:"func_box", title: 'USB 设置',width:780, height:570, lock:true,drag: false});
+
 					} else{
 						$.ajax({
-							url:'<%=pcdata(luci.dispatcher.build_url())%>/admin/xcloud/'+act,
+							url:'<%=pcdata(luci.dispatcher.build_url("admin/shield"))%>/'+act,
 							type:'POST',
 							data:o,
 							dataType:'html',
@@ -110,7 +110,7 @@ a{ behavior:url(<%=resource%>/turbo/web/images/blur.htc);}
 			})
 			function updatestatus(){
 				$.ajax({
-					url:'<%=pcdata(luci.dispatcher.build_url("admin/xcloud/xcloudstatus"))%>',
+					url:'<%=pcdata(luci.dispatcher.build_url("admin/shield/xcloudstatus"))%>',
 					type:'POST',
 					dataType:'html',
 					success:function(html){
@@ -127,7 +127,7 @@ a{ behavior:url(<%=resource%>/turbo/web/images/blur.htc);}
 
 			$('.setup_return').live('click',function(){
 				$.ajax({
-					url:'<%=pcdata(luci.dispatcher.build_url("admin/xcloud/setupreturn"))%>',
+					url:'<%=pcdata(luci.dispatcher.build_url("admin/shield/setupreturn"))%>',
 					type:'POST',
 					data:{},
 					dataType:'html',
@@ -139,13 +139,13 @@ a{ behavior:url(<%=resource%>/turbo/web/images/blur.htc);}
 			})
 
 			var netipaddr = '<%=show_lan_ip%>';
-			var lanipaddrurl = '<%=pcdata(luci.dispatcher.build_url("admin/xcloud/lanipaddrsetup"))%>';
-			var landhcpurl = '<%=pcdata(luci.dispatcher.build_url("admin/xcloud/lansetup2dhcp"))%>';
+			var lanipaddrurl = '<%=pcdata(luci.dispatcher.build_url("admin/shield/lanipaddrsetup"))%>';
+			var landhcpurl = '<%=pcdata(luci.dispatcher.build_url("admin/shield/lansetup2dhcp"))%>';
 
 			function appsetup_change(flag,obj){
 				//alert(flag);
 				$.ajax({
-					url:'<%=pcdata(luci.dispatcher.build_url("admin/xcloud/appsetupselect"))%>',
+					url:'<%=pcdata(luci.dispatcher.build_url("admin/shield/appsetupselect"))%>',
 					dataType:'html',
 					data:{choose:flag},
 					type:'post',
@@ -187,7 +187,7 @@ a{ behavior:url(<%=resource%>/turbo/web/images/blur.htc);}
 				$(this).css('display','none');
 				$(this).next().css('display','block');
 				$.ajax({
-					url:'<%=pcdata(luci.dispatcher.build_url("admin/xcloud/appsetup/appuninstall"))%>',
+					url:'<%=pcdata(luci.dispatcher.build_url("admin/shield/appsetup/appuninstall"))%>',
 					data:{uid:unid},
 					dataType:'json',
 					type:'post',
@@ -218,7 +218,7 @@ a{ behavior:url(<%=resource%>/turbo/web/images/blur.htc);}
 				$(this).next().css('display','block');
 
 				$.ajax({
-					url:'<%=pcdata(luci.dispatcher.build_url("admin/xcloud/appsetup/startinstall"))%>',
+					url:'<%=pcdata(luci.dispatcher.build_url("admin/shield/appsetup/startinstall"))%>',
 					data:{type:'1',dir:path},
 					dataType:'json',
 					type:'post',
@@ -246,7 +246,7 @@ a{ behavior:url(<%=resource%>/turbo/web/images/blur.htc);}
 				$(this).parent().attr('rel','1').append("<span>挂载中...</span>");
 				$('.usb_devadd h4').attr('rel','1');
 				$.ajax({
-					url:'<%=pcdata(luci.dispatcher.build_url("admin/xcloud/usbinfo/usbaddmain"))%>',
+					url:'<%=pcdata(luci.dispatcher.build_url("admin/shield/usbinfo/usbaddmain"))%>',
 					data:{dev:flag},
 					dataType:'json',
 					type:'post',
@@ -294,7 +294,7 @@ a{ behavior:url(<%=resource%>/turbo/web/images/blur.htc);}
 				var flag=$(this).attr('rel');
 				$('.ndevremoving').css('display','block');
 				$.ajax({
-					url:'<%=pcdata(luci.dispatcher.build_url("admin/xcloud/usbinfo/usbremovemain"))%>',
+					url:'<%=pcdata(luci.dispatcher.build_url("admin/shield/usbinfo/usbremovemain"))%>',
 					data:{dev:flag},
 					dataType:'json',
 					type:'post',
@@ -357,7 +357,7 @@ a{ behavior:url(<%=resource%>/turbo/web/images/blur.htc);}
 
 			function wdsbegin(ssid,bssid,chanel,authmode,encryptype,codeval){
 				$.ajax({
-					url:'<%=pcdata(luci.dispatcher.build_url("admin/xcloud/wdsstart"))%>',
+					url:'<%=pcdata(luci.dispatcher.build_url("admin/shield/wdsstart"))%>',
 					data:{ss:ssid,bs:bssid,ch:chanel,au:authmode,en:encryptype,code:codeval},
 					dataType:'json',
 					type:'post',
@@ -449,7 +449,7 @@ a{ behavior:url(<%=resource%>/turbo/web/images/blur.htc);}
 				wdstop_mention("断开连接中...")
 
 				$.ajax({
-					url:'<%=pcdata(luci.dispatcher.build_url("admin/xcloud/wdstop"))%>',
+					url:'<%=pcdata(luci.dispatcher.build_url("admin/shield/wdstop"))%>',
 					dataType:'json',
 					success:function(r){
 						if (r.result == 'success')

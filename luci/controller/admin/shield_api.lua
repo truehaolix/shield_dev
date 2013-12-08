@@ -1,7 +1,7 @@
 module("luci.controller.admin.shield_api", package.seeall)
 
 function index()
-	entry({"admin", "shield"},template("admin_shield/shield"))
+	entry({"admin", "shield"},template("admin_web/shield_index"))
 
 	entry({"admin", "shield", "info"}, template("admin_web/info"), nil)
 	entry({"admin", "shield", "devices_list"}, template("admin_web/device_list"), nil)
